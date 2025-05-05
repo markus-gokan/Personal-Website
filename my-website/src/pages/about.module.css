@@ -1,0 +1,38 @@
+.heading{
+    text-align:center;
+    margin:0 0 2rem;
+    font-family:var("IBM Plex Mono");
+    font-size: 5rem;
+  }
+
+/* NEW – inline image + text */
+.aboutGrid{
+    display:flex;
+    flex-direction:row;       /* always side‑by‑side */
+    align-items: center;       /* vertical centring */
+    gap:2rem;
+    max-width:1800px;
+    margin:0 auto 2rem;       /* centred block */
+  }
+  
+
+  .headshot{
+    width: 15vw; 
+    height: auto;               /* edit to taste */
+    max-width:80vw;
+    border-radius:5%;
+    flex:0 0 auto;
+
+  }
+  
+/* NEW .bio – fills remaining space */
+.bio{
+    flex:1 1 0;                 /* grow to fill unused width */
+    font-size:1.8rem;
+    line-height:1.6;
+    min-width:300px;
+    padding: 1rem;
+    border-radius: 5%;
+    background: var(--ifm-background-color);
+    box-shadow: var(--ifm-card-shadow);
+  }

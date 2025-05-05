@@ -1,0 +1,75 @@
+import GalleryFlex from "@site/src/components/GalleryFlex";
+import heroImg from "./media/hero.jpg";
+   
+<!-- Hero Image -->
+
+<img
+  src={heroImg}
+  alt="Arc Köhler mobility-aid hero image"
+  style={{
+    width: "100%",
+    height: "auto",
+    borderRadius: "12px",
+    marginBottom: "1.5rem",
+  }}
+/>
+   
+<!-- /* Title Block */ -->
+
+# Arc Köhler Mobility-Aid Prototype
+
+**Skills used:** CAD · FEA · 3-axis CNC · 3 D-printing · Embedded (Arduino) · Human-factors testing
+
+{(() => {
+  /* grab every NON-hero image */
+  function importAll(r) { return r.keys().map(r).map(m => m.default); }
+  const pics = importAll(
+    require.context("./media", false, /^(?!.*hero\.).*\.(png|jpe?g|gif|webp)$/)
+  );
+
+  /* text cards — set size: 1 | 2 | 3   (defaults to 1) */
+  const notes = [
+   
+   /* Text Card 1 */
+   
+    {
+      index: 0,
+      size: 3,
+      jsx: (
+        <>
+          ### TL;DR  
+          2024 season FRC *swerve* drive. 20 fps top speed.
+        </>
+      ),
+    },
+ 
+/* Text Card 2 */
+
+    {
+      index: 1,
+      size: 2,
+      jsx: (
+        <>
+          ### Lessons Learned  
+          – CAD earlier  
+          – Color-code wiring  
+          – Practice driver drills
+        </>
+      ),
+    },
+/* Text Card 3 */
+    {
+      index: 5,
+      size: 1,
+      jsx: (
+        <>
+          ### Awards  
+          * Imagery Award  
+          * Innovation in Control
+        </>
+      ),
+    },
+  ];
+
+  return <GalleryFlex images={pics} textSlots={notes} />;
+})()}

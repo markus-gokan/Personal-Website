@@ -1,0 +1,19 @@
+---
+title: Gallery
+---
+
+import GalleryFlex from "@site/src/components/GalleryFlex";
+
+Me Doing Engineering Stuff ™
+**Zero Context Pictures of me making/working on stuff that dont get a whole project page, but are kinda interesting anyway. Enjoy!
+
+
+{(() => {
+  /* grab every NON-hero image */
+  function importAll(r) { return r.keys().map(r).map(m => m.default); }
+  const pics = importAll(
+    require.context("./gallerymedia", false, /^(?!.*hero\.).*\.(png|jpe?g|gif|webp)$/)
+  );
+
+  return <GalleryFlex images={pics} />;
+})()}

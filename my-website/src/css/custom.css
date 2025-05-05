@@ -1,30 +1,115 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
+/* ─────────── Web‑fonts ─────────── */
+@import url("https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
-/* You can override the default Infima variables here. */
-:root {
-  --ifm-color-primary: #3b2aa7;
-  --ifm-color-primary-dark: #34268e;
-  --ifm-color-primary-darker: #3b2e8f;
-  --ifm-color-primary-darkest: #2b2362;
-  --ifm-color-primary-light: #2b7cad;
-  --ifm-color-primary-lighter: #4094c8;
-  --ifm-color-primary-lightest: #4badea;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(41, 160, 200, 0.549);
+/* ─────────── Global palette & typography ─────────── */
+:root{
+  /* fonts */
+  --ifm-font-family-base: "IBM Plex Mono", monospace;
+  --ifm-font-family-heading: "Fugaz One", cursive;
+
+  /* vapor‑wave colors */
+  --col-neon-pink:   #ff77ff;
+  --col-neon-blue:   #6be2ff;
+  --col-purple-deep: #3d1a78;
+  --col-cyber-turq:  #18f5e0;
+
+  /* Docusaurus primary */
+  --ifm-color-primary:       var(--col-neon-pink);
+  --ifm-color-primary-dark:  #e052e0;
+  --ifm-color-primary-light: #ffa4ff;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #e8de25;
-  --ifm-color-primary-dark: #ccc31e;
-  --ifm-color-primary-darker: #b2aa1c;
-  --ifm-color-primary-darkest: #8d8710;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #d832ac;
-  --ifm-color-primary-lightest: #c147a0;
-  --docusaurus-highlighted-code-line-bg: rgba(182, 76, 76, 0.3);
+/* ─────────── Consistent page background ─────────── */
+html,
+body{
+  min-height:100%;
+  background:var(--col-purple-deep);                       /* fallback solid */
+  /* Uncomment the next line to use the animated grid GIF instead */
+  background-image:url("../../static/img/homepagebackground.jpg"); 
+  background-size:cover;
+  background-attachment:fixed;   /* prevents split colors */
+  background-position:center;
+  color:#fff;
 }
+
+/* ─────────── Links & buttons ─────────── */
+a{
+  color:var(--col-neon-blue);
+  text-decoration:none;
+  text-shadow:0 0 4px var(--col-neon-blue);
+}
+
+.button,
+.button--primary{
+  background:linear-gradient(to bottom,#00ffff 0%,#00cccc 100%);
+  border:2px solid #00ffff;
+  text-shadow:0 0 6px #00ffff;
+  box-shadow:0 0 12px #00ffff;
+  font-family:"IBM Plex Mono", monospace;
+  color:#000;
+}
+
+/* ─────────── Navbar ─────────── */
+.navbar__inner{
+  background: linear-gradient(#3d1a78, #ffa4ff);          
+  box-shadow:0 0 10px var(--col-neon-blue);
+  backdrop-filter:blur(4px);
+}
+
+/* ─────────── Fade‑in effect on page load ─────────── */
+.main-wrapper{
+  animation:fadeIn 0.8s ease-in-out;
+}
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+/* ─────────── Masonry helper (unchanged) ─────────── */
+.my-masonry{display:flex;margin-left:-1rem;}
+.my-column{padding-left:1rem;background-clip:padding-box;}
+
+/* ----- keep global background visible through all wrappers ----- */
+:root{
+  --ifm-background-color: transparent;   /* Docusaurus variables */
+  --ifm-background-surface-color: transparent;
+}
+
+.main-wrapper,
+#__docusaurus{
+  background: transparent !important;    /* fallback if a page sets its own */
+}
+
+/* make the landing hero transparent so the global vapor background shows */
+.hero{
+  background:transparent !important;   /* kills the grey fill */
+}
+
+/* if you use the Docusaurus 'hero--primary' helper class anywhere */
+.hero--primary{
+  background:transparent !important;
+}
+
+/* same neon style as toggleBtn */
+.aboutBtn{
+  margin-top:1.5rem;
+  background:#1d1c4e;
+  border-radius:14px 4px 14px 4px;
+  color:#fff;
+  font-weight:700;
+  position:relative;
+  overflow:hidden;
+}
+
+.aboutBtn .glow{
+  position:absolute;
+  inset:-50%;
+  background:radial-gradient(circle,#6be2ff55 0%,#0000 70%);
+  opacity:.8;
+  transition:opacity .4s;
+  pointer-events:none;
+}
+
+.aboutBtn:hover .glow{ opacity:1; }

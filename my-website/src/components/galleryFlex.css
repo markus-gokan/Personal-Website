@@ -1,0 +1,87 @@
+/* ─── Container ─────────────────────── */
+.gf-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* ─── Default thumb / card width (1-col) ───────────────── */
+.gf-tile,
+.gf-card,
+.gf-span-1 {
+  flex: 0 0 calc(33.333% - 1rem);
+  max-width: calc(33.333% - 1rem);
+}
+
+/* ─── Wide cards ─────────────────────── */
+.gf-span-2 {
+  flex: 0 0 calc(66.666% - 1rem);
+  max-width: calc(66.666% - 1rem);
+}
+.gf-span-3 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+/* ─── Responsiveness ─────────────────── */
+@media (max-width: 920px) {
+  .gf-tile,
+  .gf-card,
+  .gf-span-1 {
+    flex-basis: calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+  }
+  .gf-span-2,
+  .gf-span-3 {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .gf-tile,
+  .gf-card,
+  .gf-span-1,
+  .gf-span-2,
+  .gf-span-3 {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+}
+
+/* ─── Image tile visuals ─────────────── */
+.gf-tile {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.gf-tile:hover { transform: scale(1.03); }
+
+/* ─── Card visuals ───────────────────── */
+.gf-card {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: var(--ifm-background-color);
+  box-shadow: var(--ifm-card-shadow);
+}
+
+/* ─── Light-box overlay ──────────────── */
+.gf-modal {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.gf-modal img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 0.5rem;
+}

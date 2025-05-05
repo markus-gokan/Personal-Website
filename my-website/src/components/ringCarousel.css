@@ -1,0 +1,184 @@
+
+
+/* ─── 3-D banner wrapper ───────────────────────────── */
+.banner{
+  width:100%;
+  position:relative;
+  text-align:center;
+}
+
+/* 3‑D “solid card” look */
+.item{
+  position:absolute;
+  inset:0px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transform-origin:center;
+  /* perspective already set on parent */
+}
+
+.item img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  border-radius:12px;
+  box-shadow:0 6px 16px rgba(0,0,0,.45);
+}
+
+
+/* thickness — two pseudo edges */
+.item::before,
+.item::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:12px;
+  background:inherit;        /* inherit image snapshot */
+  transform-origin:left;
+  transform:rotateY(-90deg) translateZ(100px); /* 3 px thick */
+  filter:brightness(0.8);
+}
+.item::after{
+  transform-origin:right;
+  transform:rotateY(90deg) translateZ(3px);
+}
+
+/* snap animation when pointer is over the ring */
+.slider.snap{
+  transition:transform 0.35s ease;
+}
+
+/* keeps the whole ring pitched down a bit */
+.tiltWrapper{
+  perspective:1000px;          /* ⇦ perspective belongs here */
+  transform:rotateX(-8deg);   /* keeps the cant */
+  transform-style:preserve-3d;
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* ─── spinning ring (desktop size) ─────────────────── */
+.banner .slider{
+  position:absolute;
+  width:220px;          /* thumbnail W×H */
+  height:280px;
+  top:10%;
+  left:calc(50% - 110px);
+  transform-style:preserve-3d;
+  z-index:2;
+}
+
+@keyframes autoRun{
+  from{ transform:perspective(1000px) rotateX(-16deg) rotateY(0deg);   }
+  to  { transform:perspective(1000px) rotateX(-16deg) rotateY(360deg); }
+}
+
+/* ─── each panel (JS sets --position / --quantity) ─── */
+.banner .slider .item{
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transform-style:preserve-3d;          /* enable depth for children */
+  perspective:800px;                    /* give edges their own depth */
+  transform:
+      rotateY(calc((var(--position) - 1)*(360 / var(--quantity))*1deg))
+      translateZ(500px);
+}
+
+/* face */
+.banner .slider .item img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  border-radius:12px;
+}
+
+
+.banner .slider .item::after{
+  transform-origin:right;
+  transform:rotateY(90deg) translateZ(4px) scaleX(.96);
+}
+
+.banner .slider .item img{
+  width:60%;
+  height:auto;
+  object-fit:contain;
+  border-radius:12px;
+  box-shadow:0 6px 16px #ff00ff;
+}
+
+/* ─── responsive tweaks (tablet / phone) ───────────── */
+@media (max-width:1023px){
+.banner .slider{
+    width:160px;height:200px;left:calc(50% - 80px);
+}
+
+.banner .slider .item{
+  position:absolute;
+  inset:0;
+  display:flex;                     /* ← NEW */ 
+  align-items:center;               /* vertical centring  */
+  justify-content:center;           /* horizontal centring*/
+    transform:
+      rotateY(calc((var(--position) - 1)*(360 / var(--quantity))*1deg))
+      translateZ(380px);
+}
+}
+@media (max-width:767px){
+.banner .slider{
+    width:120px;height:160px;left:calc(50% - 60px);
+}
+.banner .slider .item{
+  position:absolute;
+  inset:0;
+  display:flex;                     /* ← NEW */ 
+  align-items:center;               /* vertical centring  */
+  justify-content:center;           /* horizontal centring*/
+    transform:
+      rotateY(calc((var(--position) - 1)*(360 / var(--quantity))*1deg))
+      translateZ(250px);
+}
+}
+.banner .content{
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+  transform: translateX(-50%);
+  width: min(1400px,100vw);
+  height: max-content;
+  padding-bottom: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/*area for user control of carousel*/
+.snapZone{
+  position:absolute;
+  width:240px;          /* adjust to taste */
+  height:300px;
+  top:50%;              /* center over ring */
+  left:50%;
+  translate:-50% -50%;
+  pointer-events:auto;  /* receives scroll & hover */
+  background:transparent;
+}
+
+/* slider now ignores pointer so clicks still reach links */
+.slider{ pointer-events:auto; }
+
+
+/* --- DEBUG ONLY ----------------------------------- */
+.slider.debug {
+  outline:2px dashed red;   /* visible border */
+  outline-offset:4px;       /* pushes the line outside the card edges */
+  z-index:4;                /* sits above the side walls */
+}
+/* -------------------------------------------------- */
