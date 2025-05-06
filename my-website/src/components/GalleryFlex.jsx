@@ -3,7 +3,11 @@ import "./galleryFlex.css";
 
 export default function GalleryFlex({ images = [], textSlots = [] }) {
   /* images → objects with size = 1 */
-  const merged = images.map((src) => ({ type: "img", src, size: 1 }));
+  const merged = images.map(img =>
+      typeof img === "string" ?                 // plain src string
+        ({ type:"img", src:img, size:1 }) :
+        ({ type:"img", ...img })                // object {src,size}
+    );
 
   /* splice text cards in, carrying their size */
   textSlots.forEach(({ index = 0, jsx, size = 1 }) => {
@@ -31,7 +35,7 @@ export default function GalleryFlex({ images = [], textSlots = [] }) {
               key={item.src}
               src={item.src}
               alt={`gallery-${i}`}
-              className="gf-tile"
+              className={`gf-tile gf-span-${item.size||1}`}
               onClick={() => openModal(i)}
             />
           ) : (

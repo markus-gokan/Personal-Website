@@ -23,6 +23,10 @@
   flex: 0 0 100%;
   max-width: 100%;
 }
+.gf-span-4 {
+  flex: 0 0 calc(50% - 1rem);
+  max-width: calc(50% - 1rem);
+}
 
 /* ─── Responsiveness ─────────────────── */
 @media (max-width: 920px) {

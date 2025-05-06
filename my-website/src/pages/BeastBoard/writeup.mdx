@@ -1,11 +1,14 @@
+---
+title: MAE 3: Introduction to Engineering Graphics and Design
+---
+
 import GalleryFlex from "@site/src/components/GalleryFlex";
 import heroImg from "./media/hero.jpg";
-   
-<!-- Hero Image -->
 
+{/* ─── Hero Image ─────────────────────────────────── */}
 <img
   src={heroImg}
-  alt="Arc Köhler mobility-aid hero image"
+  alt="hero image"
   style={{
     width: "100%",
     height: "auto",
@@ -13,59 +16,70 @@ import heroImg from "./media/hero.jpg";
     marginBottom: "1.5rem",
   }}
 />
-   
-<!-- /* Title Block */ -->
 
-# Arc Köhler Mobility-Aid Prototype
-
-**Skills used:** CAD · FEA · 3-axis CNC · 3 D-printing · Embedded (Arduino) · Human-factors testing
+{/* ─── Title Block ────────────────────────────────── */}
+## Electric Skateboard: "The Beast"
+**Skills used:** Fusion 360 · Spot Welding · Soldering · BLDC Control · Fiberglass Forming · CNC
 
 {(() => {
-  /* grab every NON-hero image */
-  function importAll(r) { return r.keys().map(r).map(m => m.default); }
-  const pics = importAll(
-    require.context("./media", false, /^(?!.*hero\.).*\.(png|jpe?g|gif|webp)$/)
-  );
+  // grab every NON-hero image from ./media
+  function importAll(r) {
+    return r.keys().map(r).map((m) => m.default);
+  }
+ const picsRaw = importAll(
+  require.context(
+    "./media",
+    false,
+    /^(?!.*hero\.).*\.(jpe?g|png|gif)$/
+  )
+);
 
-  /* text cards — set size: 1 | 2 | 3   (defaults to 1) */
+  // wrap them into objects so we can set individual sizes
+  const pics = picsRaw.map((src) => ({ src, size: 1 }));
+
+  // example: make the 7th image full-width (size:3)
+  pics[1].size = 3;
+    pics[2].size = 4;
+      pics[3].size = 4;
+
+
+  // text cards, same API as before
   const notes = [
-   
-   /* Text Card 1 */
-   
     {
-      index: 1,
+      index: 0,
       size: 2,
       jsx: (
         <>
-          ### TL;DR  
-          2024 season FRC *swerve* drive. 20 fps top speed.
-        </>
-      ),
-    },
- 
-/* Text Card 2 */
+        <br/>
+        <br/>
+        <br/>
+          Build:<br/>
+          -Custom 12s8p Samsung 30q battery pack <br/>
+          -2x VESC 6.6 using ‘akmaniac’ firmware<br/>
+          -2x Maytech 6374 motors<br/>
+          -5.5 inch pneumatic wheels<br/>
+          -Metr Pro Bluetooth module<br/>
+          -Carbon fiber overlay for extra rigidity<br/>
+          -Custom vacuum formed fiberglass electronics enclosure, vinyl wrapped<br/>
 
-    {
-      index: 4,
-      size: 1,
-      jsx: (
-        <>
-          ### Lessons Learned  
-          – CAD earlier  
-          – Color-code wiring  
-          – Practice driver drills
         </>
       ),
     },
-/* Text Card 3 */
     {
-      index: pics.length,
-      size: 1,
+      index: 3,
+      size: 3,
       jsx: (
         <>
-          ### Awards  
-          * Imagery Award  
-          * Innovation in Control
+          Struck by the ceaseless boredom of the COVID-19 lockdown, I used the extra time to pursue a long-time goal of mine— designing and building a custom electric longboard. With all the motivation and time that quarantining at home provided, I decided that if I was going to do it, it was going to be done right, and massively over qualified for any use I could possibly have for it. The following 8 months of research and prototyping led me to the creation of the board that I finally nicknamed ‘The Beast’ for it’s excessive nature and seemingly limitless power. 
+        </>
+      ),
+    },
+    {
+      index: 6,
+      size: 3,
+      jsx: (
+        <>
+         Using a 96 cell lithium-ion battery, totaling 50.4V and capable of providing 240A, to power dual 3.5kW motors driving pneumatic wheels; ‘The Beast’ was able to easily accelerate me uphill at over 35 miles per hour. And while I never even came close to running out of charge, the enormous battery would be able to power the board for close to 40 miles— far longer than it look for my legs to turn to Jell-O.
         </>
       ),
     },
