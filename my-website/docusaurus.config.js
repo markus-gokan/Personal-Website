@@ -8,7 +8,7 @@ module.exports = {
   baseUrl: '/portfolio-site/',
   favicon: 'img/favicon.ico',
   organizationName: 'markusgokan',
-  projectName: 'portfolio',
+  projectName: 'Personal-Website',
 
 
 
