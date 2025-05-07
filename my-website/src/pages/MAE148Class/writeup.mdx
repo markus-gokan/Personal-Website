@@ -1,3 +1,7 @@
+--- 
+hide_table_of_contents: true
+---
+
 import GalleryFlex from "@site/src/components/GalleryFlex";
 import heroImg from "./media/hero.jpg";
    
@@ -5,7 +9,7 @@ import heroImg from "./media/hero.jpg";
 
 <img
   src={heroImg}
-  alt="Arc Köhler mobility-aid hero image"
+  alt="hero image"
   style={{
     width: "100%",
     height: "auto",
@@ -16,16 +20,29 @@ import heroImg from "./media/hero.jpg";
    
 <!-- /* Title Block */ -->
 
-# Arc Köhler Mobility-Aid Prototype
+# MAE 148: Intro to Autonomous Vehicles, El Cochito
 
-**Skills used:** CAD · FEA · 3-axis CNC · 3 D-printing · Embedded (Arduino) · Human-factors testing
+## Skills used: Fusion360 · ROS2 · LinuxOS · 3D-printing · Deep Learning · Controls
 
 {(() => {
-  /* grab every NON-hero image */
-  function importAll(r) { return r.keys().map(r).map(m => m.default); }
-  const pics = importAll(
-    require.context("./media", false, /^(?!.*hero\.).*\.(png|jpe?g|gif|webp)$/)
-  );
+      // grab every NON-hero image from ./media
+  function importAll(r) {
+    return r.keys().map(r).map((m) => m.default);
+  }
+ const picsRaw = importAll(
+  require.context(
+    "./media",
+    false,
+    /^(?!.*hero\.).*\.(jpe?g|png|gif)$/
+  )
+);
+
+  // wrap them into objects so we can set individual sizes
+  const pics = picsRaw.map((src) => ({ src, size: 1 }));
+
+  // Image card size override
+  pics[0].size = 4;
+  pics[1].size = 4;
 
   /* text cards — set size: 1 | 2 | 3   (defaults to 1) */
   const notes = [
@@ -33,12 +50,11 @@ import heroImg from "./media/hero.jpg";
    /* Text Card 1 */
    
     {
-      index: 1,
-      size: 2,
+      index: 0,
+      size: 3,
       jsx: (
         <>
-          ### TL;DR  
-          2024 season FRC *swerve* drive. 20 fps top speed.
+    This class was by far the most intensive coding and software-focused engineering class I have taken, and while I had a lot to learn to catch up to the majority of the students in the class (who where by and large Electrical-Computer Engineering majors), I learned a ton about ROS2, deep learning algorithms, and got to implement the theory that we learned in our controls’ classes into tuning an actual PID controller.
         </>
       ),
     },
@@ -47,29 +63,27 @@ import heroImg from "./media/hero.jpg";
 
     {
       index: 4,
-      size: 1,
+      size: 3,
       jsx: (
         <>
-          ### Lessons Learned  
-          – CAD earlier  
-          – Color-code wiring  
-          – Practice driver drills
+ <p style={{ margin: 0, marginBottom: '0.1rem', fontWeight: 1000}}>
+       This project has its own webpage, which can be found at this link:
+      </p>
+        <div className="btnContainer">
+          <a
+            href="https://ucsd-ecemae-148.github.io/fall-2024-final-project-team-2/"
+            className="toggleBtn"
+            target="_blank"
+            rel="noopener"
+          >
+            Project Website
+            <span className="glow" />
+          </a>
+        </div>
         </>
       ),
     },
-/* Text Card 3 */
-    {
-      index: pics.length,
-      size: 1,
-      jsx: (
-        <>
-          ### Awards  
-          * Imagery Award  
-          * Innovation in Control
-        </>
-      ),
-    },
-  ];
+  ]
 
   return <GalleryFlex images={pics} textSlots={notes} />;
 })()}

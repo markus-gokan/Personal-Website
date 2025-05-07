@@ -8,7 +8,7 @@ module.exports = {
   baseUrl: '/portfolio-site/',
   favicon: 'img/favicon.ico',
   organizationName: 'markusgokan',
-  projectName: 'portfolio-site',
+  projectName: 'portfolio',
 
 
 
@@ -28,17 +28,15 @@ module.exports = {
     navbar: {
       style: 'dark',
       title: 'Markus Gokan',
+      hideOnScroll: true,
       items: [
-        { to: '/about',  label: 'About',   position: 'left' },
         { to: '/projects', label: 'Portfolio', position: 'left' },
-        { to: '/gallery.mdx',  label: 'Gallery',  position: 'left' },
-        {
-          href: 'https://www.linkedin.com/in/markus-gokan/',
-          label: 'LinkedIn',
-          position: 'right',
-        },
+        { to: '/about',  label: 'About',   position: 'left' },
+        { to: '/gallery',  label: 'Gallery',  position: 'left' },
+      
       ],
     },
     colorMode: { defaultMode: 'dark' },
+    respectPrefersColorScheme: false,
   },
 };

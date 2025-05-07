@@ -1,71 +1,112 @@
+--- 
+hide_table_of_contents: true
+---
+
 import GalleryFlex from "@site/src/components/GalleryFlex";
 import heroImg from "./media/hero.jpg";
-   
-<!-- Hero Image -->
 
+{/* Hero Image */}
 <img
   src={heroImg}
-  alt="Arc Köhler mobility-aid hero image"
+  alt="hero image"
   style={{
     width: "100%",
     height: "auto",
     borderRadius: "12px",
-    marginBottom: "1.5rem",
+    marginBottom: ".5rem",
   }}
 />
-   
-<!-- /* Title Block */ -->
 
-# Arc Köhler Mobility-Aid Prototype
+{/* Title Block */}
+# Water Enabled Electricity Generating Device
 
-**Skills used:** CAD · FEA · 3-axis CNC · 3 D-printing · Embedded (Arduino) · Human-factors testing
+## Skills used: CAD · CAM · 3-axis CNC · 3D-printing · Manual Machining · Materials Study
 
 {(() => {
-  /* grab every NON-hero image */
-  function importAll(r) { return r.keys().map(r).map(m => m.default); }
-  const pics = importAll(
-    require.context("./media", false, /^(?!.*hero\.).*\.(png|jpe?g|gif|webp)$/)
-  );
+    // grab every NON-hero image from ./media
+  function importAll(r) {
+    return r.keys().map(r).map((m) => m.default);
+  }
+ const picsRaw = importAll(
+  require.context(
+    "./media",
+    false,
+    /^(?!.*hero\.).*\.(jpe?g|png|gif)$/
+  )
+);
 
-  /* text cards — set size: 1 | 2 | 3   (defaults to 1) */
+  // wrap them into objects so we can set individual sizes
+  const pics = picsRaw.map((src) => ({ src, size: 1 }));
+
+  // Image card size override
+  pics[2].size = 4;
+  pics[3].size = 4;
+  pics[0].size = 3;
+  pics[1].size = 3;
+
+  // text cards — set size: 1 | 2 | 3   (defaults to 1)
   const notes = [
-   
-   /* Text Card 1 */
-   
     {
-      index: 1,
+      index: 0,
+      size: 3,
+      jsx: (
+        <>
+          As part of the UCSD engineering curriculum, our senior year is
+          concluded with an engineering project class where students work in
+          teams of 5 to independently complete a project proposed by industry
+          and academic sponsors.
+        </>
+      ),
+    },
+    {
+      index: 2,
+      size: 3,
+      jsx: (
+        <>
+         The project that I picked was sponsored by a professor from UCSD, Dr. Prabhakar Bandaru, 
+         to advance/develop a proposed solid state electrokinetic technology to convert wave energy into usable power. 
+         The previous figure of merit that the campus laboratory achieved was 0.1 millivolts/pascal, with a test fixture only capable of
+          supporting about 500 pascals of forced pressure through extremely small channels. 
+        </>
+      ),
+    },
+    {
+      index: 4,
+      size: 3,
+      jsx: (
+        <>
+          We demonstrated a significant improvement to this figure generating, at peak, over 1.6 volts, and recording nano-watts of power generation– which, compared to the previous pico-watt status-quo, represented a significant step forward for this technology. We achieved this through careful material selection, a uniquely designed micro-milled channel geometry, and a more modular test bed, capable of supporting greater variation in flow rates and more accurately simulating ocean-wave dynamics. 
+        </>
+      ),
+    },
+    {
+      index: 7,
       size: 2,
       jsx: (
         <>
-          ### TL;DR  
-          2024 season FRC *swerve* drive. 20 fps top speed.
-        </>
-      ),
-    },
- 
-/* Text Card 2 */
-
-    {
-      index: 4,
-      size: 1,
-      jsx: (
-        <>
-          ### Lessons Learned  
-          – CAD earlier  
-          – Color-code wiring  
-          – Practice driver drills
-        </>
-      ),
-    },
-/* Text Card 3 */
-    {
-      index: pics.length,
-      size: 1,
-      jsx: (
-        <>
-          ### Awards  
-          * Imagery Award  
-          * Innovation in Control
+         <p style={{ margin: 0, marginBottom: '0.1rem', fontWeight: 1000}}>
+        More information about this exciting project, which is currently pending a provisional patent, can be found at the project website here: 
+      </p>
+        <div className="btnContainer">
+          <a
+            href="https://sites.google.com/eng.ucsd.edu/mae156b-2025winter-team04"
+            className="toggleBtn"
+            target="_blank"
+            rel="noopener"
+          >
+            Project Website
+            <span className="glow" />
+          </a>
+          <a
+            href="/files/MAE_156B_W25_Senior_Design_Project_Report_FINAL.pdf"
+            className="toggleBtn"
+            target="_blank"
+            rel="noopener"
+          >
+            View Paper
+            <span className="glow" />
+          </a>
+        </div>
         </>
       ),
     },

@@ -1,5 +1,5 @@
----
-title: MAE 3: Introduction to Engineering Graphics and Design
+--- 
+hide_table_of_contents: true
 ---
 
 import GalleryFlex from "@site/src/components/GalleryFlex";
@@ -18,8 +18,8 @@ import heroImg from "./media/hero.jpg";
 />
 
 {/* ─── Title Block ────────────────────────────────── */}
-## Project Title  
-**Skills used:** Fusion 360 · FEA · Laser Cutting · 3D-printing
+# The Arc Kholer School Project
+## Skills: used Fusion 360 · FEA · 3D-printing · Human-Factor Design
 
 {(() => {
   // grab every NON-hero image from ./media
@@ -37,8 +37,7 @@ import heroImg from "./media/hero.jpg";
   // wrap them into objects so we can set individual sizes
   const pics = picsRaw.map((src) => ({ src, size: 1 }));
 
-  // example: make the 7th image full-width (size:3)
-  pics[5].size = 3;
+  // Image card size override
   pics[0].size = 4;
   pics[1].size = 4;
 
@@ -49,7 +48,8 @@ import heroImg from "./media/hero.jpg";
       size: 3,
       jsx: (
         <>
-          Text Card
+          In my sophomore year of highschool I was invited to join an initiative aiming to create a partnership between engineering students and students at a local non-profit school providing educational services for developmentally and physically handicapped students.
+
         </>
       ),
     },
@@ -58,16 +58,16 @@ import heroImg from "./media/hero.jpg";
       size: 3,
       jsx: (
         <>
-          Text Card
+          I was partnered with a young man who’s disability affected his legs and his ability to open his hands. This created a unique challenge for him, as manual wheelchairs need to be pushed by grabbing a bar on the outside of the wheel. Becuase of this, he needed a helper to push him for most of the day, and the existing solution, wrapping rubber excersize bands around the push bar was uncomfortable and innefficient. Using Fusion 360 I modeled and printed a series of prototypes which we iterated on as his design criteria evolved. Ultimately, we found that attempts to make the 'nodes' overly complex or ergonomic actually tended to make the design less comfortable. For example, creating a more contoured surface to match his fist better created more edges and corners around that face. These edges created problems when the nodes were engaged from even a slightly different angle— which, over daily use, happens frequently both on purpose and accident.
         </>
       ),
     },
     {
       index: 7,
-      size: 3,
+      size: 2,
       jsx: (
         <>
-          Text Card
+          So, the deceptively simple final design came to be: 6 fully 3D printed nodes were attached to the existing attachment points of the push rim. These nodes did not change the dimensions of the wheelchair and didn’t require the removal or permanent modification of any part of the wheelchair. Additionally they could be taken on or off quickly and easily, meaning that, even if the carbon-fiber/nylon polymer I had printed them out of broke, it could be replaced within minutes. This project was perhaps one of my favorites because it was my introduction to human centered design and that it was one of the first times I could use the skills I learned in a classroom to improve someones life, one way or another. 
         </>
       ),
     },

@@ -1,15 +1,21 @@
+// src/components/GalleryFlex.jsx
 import React, { useState } from "react";
 import "./galleryFlex.css";
 
 export default function GalleryFlex({ images = [], textSlots = [] }) {
-  /* images → objects with size = 1 */
-  const merged = images.map(img =>
-      typeof img === "string" ?                 // plain src string
-        ({ type:"img", src:img, size:1 }) :
-        ({ type:"img", ...img })                // object {src,size}
-    );
+  // 1) Build merged list with img / video / text items
+  const merged = images.map((item) => {
+    const { src, size = 1 } =
+      typeof item === "string" ? { src: item } : item;
+    const isVideo = /\.(mp4|mov)$/i.test(src);
+    return {
+      type: isVideo ? "video" : "img",
+      src,
+      size,
+    };
+  });
 
-  /* splice text cards in, carrying their size */
+  // 2) Splice in text cards
   textSlots.forEach(({ index = 0, jsx, size = 1 }) => {
     merged.splice(Math.min(index, merged.length), 0, {
       type: "text",
@@ -18,7 +24,7 @@ export default function GalleryFlex({ images = [], textSlots = [] }) {
     });
   });
 
-  /* modal state */
+  // 3) Modal state
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState(0);
   const openModal = (i) => {
@@ -29,29 +35,67 @@ export default function GalleryFlex({ images = [], textSlots = [] }) {
   return (
     <>
       <div className="gf-container">
-        {merged.map((item, i) =>
-          item.type === "img" ? (
-            <img
-              key={item.src}
-              src={item.src}
-              alt={`gallery-${i}`}
-              className={`gf-tile gf-span-${item.size||1}`}
-              onClick={() => openModal(i)}
-            />
-          ) : (
-            <div
-              key={`txt-${i}`}
-              className={`gf-card gf-span-${item.size || 1}`}
-            >
-              {item.jsx}
-            </div>
-          )
-        )}
+        {merged.map((item, i) => {
+          if (item.type === "img") {
+            return (
+              <img
+                key={item.src}
+                src={item.src}
+                alt={`gallery-${i}`}
+                className={`gf-tile gf-span-${item.size}`}
+                onClick={() => openModal(i)}
+              />
+            );
+          } else if (item.type === "video") {
+            return (
+              <video
+                key={item.src}
+                className={`gf-tile gf-span-${item.size}`}
+                controls
+                onClick={() => openModal(i)}
+              >
+                <source
+                  src={item.src}
+                  type={
+                    /\.mov$/i.test(item.src)
+                      ? "video/quicktime"
+                      : "video/mp4"
+                  }
+                />
+              </video>
+            );
+          } else {
+            return (
+              <div
+                key={`txt-${i}`}
+                className={`gf-card gf-span-${item.size}`}
+              >
+                {item.jsx}
+              </div>
+            );
+          }
+        })}
       </div>
 
       {open && (
         <div className="gf-modal" onClick={() => setOpen(false)}>
-          <img src={merged[current].src} alt="large-view" />
+          {merged[current].type === "img" ? (
+            <img
+              src={merged[current].src}
+              alt="large-view"
+            />
+          ) : (
+            <video controls autoPlay>
+              <source
+                src={merged[current].src}
+                type={
+                  /\.mov$/i.test(merged[current].src)
+                    ? "video/quicktime"
+                    : "video/mp4"
+                }
+              />
+            </video>
+          )}
         </div>
       )}
     </>

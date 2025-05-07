@@ -1,3 +1,7 @@
+--- 
+hide_table_of_contents: true
+---
+
 import GalleryFlex from "@site/src/components/GalleryFlex";
 import heroImg from "./media/hero.jpg";
    
@@ -16,16 +20,34 @@ import heroImg from "./media/hero.jpg";
    
 <!-- /* Title Block */ -->
 
-# Arc Köhler Mobility-Aid Prototype
+# 1986 Chevrolet Corvette Restoration
 
-**Skills used:** CAD · FEA · 3-axis CNC · 3 D-printing · Embedded (Arduino) · Human-factors testing
+## Skills used: CAD · TIG Welding · Composite Layup · 3D-printing · Soldering
 
 {(() => {
   /* grab every NON-hero image */
   function importAll(r) { return r.keys().map(r).map(m => m.default); }
-  const pics = importAll(
-    require.context("./media", false, /^(?!.*hero\.).*\.(png|jpe?g|gif|webp)$/)
-  );
+  // grab every NON-hero image from ./media
+  function importAll(r) {
+    return r.keys().map(r).map((m) => m.default);
+  }
+ const picsRaw = importAll(
+  require.context(
+    "./media",
+    false,
+    /^(?!.*hero\.).*\.(jpe?g|png|gif)$/
+  )
+);
+
+  // wrap them into objects so we can set individual sizes
+  const pics = picsRaw.map((src) => ({ src, size: 1 }));
+
+  // example: make the 7th image full-width (size:3)
+
+  pics[0].size = 4;
+  pics[2].size = 4;
+    pics[1].size = 4;
+
 
   /* text cards — set size: 1 | 2 | 3   (defaults to 1) */
   const notes = [
@@ -33,12 +55,11 @@ import heroImg from "./media/hero.jpg";
    /* Text Card 1 */
    
     {
-      index: 1,
-      size: 2,
+      index: 0,
+      size: 3,
       jsx: (
         <>
-          ### TL;DR  
-          2024 season FRC *swerve* drive. 20 fps top speed.
+          Well. I've always wanted to build a car from scratch…
         </>
       ),
     },
@@ -46,26 +67,21 @@ import heroImg from "./media/hero.jpg";
 /* Text Card 2 */
 
     {
-      index: 4,
-      size: 1,
+      index:1,
+      size: 4,
       jsx: (
         <>
-          ### Lessons Learned  
-          – CAD earlier  
-          – Color-code wiring  
-          – Practice driver drills
+          In fact, it's been one of my long-term goals for as long as I can remember. Every time I tried something new, or learned a new fabrication method, I'd think forward about how it would come in handy when I was working on a car. Then, out of nowhere, I was trawling Facebook marketplace in the backseat during a long drive and this C4 Corvette slides across my screen. 1986. 220,000 miles. It was a dream come true. I might not be able to build the car from scratch, but I could already tell I was going to have a lot of fun doing whatever needed to be done to the car with my own two hands. After a fair bit of negotiation, both with the seller and my (understandably) reluctant parents, just like that, I had bought my first car.
         </>
       ),
     },
 /* Text Card 3 */
     {
-      index: pics.length,
-      size: 1,
+      index: 3,
+      size: 3,
       jsx: (
         <>
-          ### Awards  
-          * Imagery Award  
-          * Innovation in Control
+          And whew, did I learn. From a busted radiator, rebuilding the fuel rail and intake, to a ground-up sound system build, this project has been a never-ending catalyst for learning. Most recently, a ton of body work along with a composite layup spoiler that I designed and FEA'd in SolidWorks drawing inspiration from the old Ferrari F40 body lines to create a truly one-of-a-kind corvette. Working on the suspension of this car primed me excellently for joining the Triton Baja team because the suspension was one of the least modeled subsystems. As much work as this car is and having to bicycle 5 miles to class when it's out of commission sure is a pain, it's an absolute joy to drive and the long hours spent on it are so rewarding I wouldn't give it up for the world.
         </>
       ),
     },

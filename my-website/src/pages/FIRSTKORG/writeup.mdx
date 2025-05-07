@@ -1,3 +1,7 @@
+--- 
+hide_table_of_contents: true
+---
+
 import GalleryFlex from "@site/src/components/GalleryFlex";
 import heroImg from "./media/hero.jpg";
    
@@ -18,52 +22,79 @@ import heroImg from "./media/hero.jpg";
 
 # FIRST Robotics- KORG
 
-**Skills used:** Fusion 360 · FEA · 3-axis CNC · 3 D-printing · Iterative Design · Small Teams
+## Skills used: Fusion 360 · FEA · 3-axis CNC · 3 D-printing · Iterative Design · Small Teams
 
 {(() => {
-  /* grab every NON-hero image */
-  function importAll(r) { return r.keys().map(r).map(m => m.default); }
-  const pics = importAll(
-    require.context("./media", false, /^(?!.*hero\.).*\.(png|jpe?g|gif|webp)$/)
-  );
+// grab every NON-hero image from ./media
+  function importAll(r) {
+    return r.keys().map(r).map((m) => m.default);
+  }
+ const picsRaw = importAll(
+  require.context(
+    "./media",
+    false,
+    /^(?!.*hero\.).*\.(jpe?g|png|gif|mp4)$/
+  )
+);
+
+  // wrap them into objects so we can set individual sizes
+  const pics = picsRaw.map((src) => ({ src, size: 1 }));
+
+  // Image card size override
+  pics[3].size = 4;
+  pics[4].size = 4;
 
   /* text cards — set size: 1 | 2 | 3   (defaults to 1) */
   const notes = [
-   
-   /* Text Card 1 */
    
     {
       index: 0,
       size: 3,
       jsx: (
         <>
-          FIRST Robotics was one of my first introductions to team based engineering, and this robot culminated my 4 year involvement and leadership in the program
+         FIRST Robotics was one of my first introductions to team based engineering, and this robot culminated my 4 year involvement and leadership in the program
         </>
       ),
     },
  
-/* Text Card 2 */
+
 
     {
       index: 4,
-      size: 2,
+      size: 3,
       jsx: (
         <>
-          KORG, or the ‘Kinetically Operated Robotic “Guy”’ was the robot designed by Team 1257 for the 2020 FIRST Robotics Season, and if it needed to be said: it was named by the primary demographic working on it— sleep deprived high schoolers who had spent the last month clocking in 20 to 30 hours a week in the lab designing and fabricating it. After developing our plan, the CAD quickly went underway to develop not only intake and scoring capabilities, but indexing and storage of up to 5 game pieces at a time, foam dodgeballs, before launching them into a target to score points as quickly as possible. After completion of the CAD with a smaller group, I began leading the fabrication of the final robot at the head of the 75-strong ‘mechanical’ sub-team
+KORG, or the ‘Kinetically Operated Robotic “Guy”’ was the robot designed by Team 1257 for the 2020 FIRST Robotics Season, and if it needed to be said: it was named by the primary demographic working on it— sleep deprived high schoolers who had spent the last month clocking in 20 to 30 hours a week in the lab designing and fabricating it. After developing our plan, the CAD quickly went underway to develop not only intake and scoring capabilities, but indexing and storage of up to 5 game pieces at a time, foam dodgeballs, before launching them into a target to score points as quickly as possible. After completion of the CAD with a smaller group, I began leading the fabrication of the final robot at the head of the 75-strong ‘mechanical’ sub-team.
         </>
       ),
     },
-/* Text Card 3 */
     {
       index: 8,
-      size: 2,
+      size: 3,
       jsx: (
         <>
-          Unfortunately, the competitive season was cancelled due to COVID-19, and it wasn’t until two years later that KORG was finally tested in a tournament, where it placed third. From a design point of view KORG achieved every goal I had set with the exception of the maximum capacity of game piece storage, peaking at 4 instead of 5, in order to reduce the chance of mechanism jams and total failures. If I redesigned it I would increase the number of ‘stages’ that were responsible for indexing the individual game pieces and increase the utilization of sensors to further automate the process.
+         Unfortunately, the competitive season was cancelled due to COVID-19, and it wasn’t until two years later that KORG was finally tested in a tournament, where it placed third. From a design point of view KORG achieved every goal I had set with the exception of the maximum capacity of game piece storage, peaking at 4 instead of 5, in order to reduce the chance of mechanism jams and total failures. If I redesigned it I would increase the number of ‘stages’ that were responsible for indexing the individual game pieces and increase the utilization of sensors to further automate the process.
+
         </>
+      ),
+    },
+    {
+      index: 5,   // place after all images
+      size: 3,
+      jsx: (
+        <div className="gf-tile gf-span-3 embedTile">
+          <iframe
+            src="https://www.youtube.com/embed/1SYYxpsGGc0"
+            title="FRC Team 1257 Parallel Universe"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
       ),
     },
   ];
+
 
   return <GalleryFlex images={pics} textSlots={notes} />;
 })()}

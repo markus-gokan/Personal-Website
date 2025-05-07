@@ -89,3 +89,44 @@
   max-height: 90vh;
   border-radius: 0.5rem;
 }
+
+/* bump up text-card readability */
+.gf-card {
+  /* adjust to taste: 1.1rem = ~18px on a 16px base font */
+  font-size: 1.5rem;
+  line-height: 1.6;       /* gives nice spacing between lines */
+  color: var(--ifm-font-color-base);
+}
+
+/* if you’re using headings or lists inside cards: */
+.gf-card h3,
+.gf-card h4,
+.gf-card h5 {
+  font-size: 1.25rem;     /* a bit larger for sub-headings */
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.gf-card ul,
+.gf-card ol {
+  margin: 0.5rem 0 1rem 1.25rem;
+}
+
+.gf-card li {
+  margin-bottom: 0.5rem;
+}
+
+/* ─── YouTube embed tile ───────────────────────────── */
+.embedTile {
+  /* force a 16:9 box instead of the default 1:1 */
+  aspect-ratio: 16 / 9;
+  background: transparent;       /* so you see the video, not a dark card */
+  padding: 0;                    /* remove any inner padding */
+}
+
+.embedTile iframe {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;         /* match your gallery styling */
+  overflow: hidden;
+}
