@@ -5,10 +5,11 @@ module.exports = {
   title: 'Markus Gokan',
   tagline: 'Engineer | Hobbyist | Classic Car Enthusiast',
   url: 'https://markusgokan.github.io',
-  baseUrl: '/portfolio-site/',
+  baseUrl: '/Personal-Website/',
   favicon: 'img/tron-bike.png',
   organizationName: 'markus-gokan',
   projectName: 'Personal-Website',
+  trailingSlash: false,
 
 
 
