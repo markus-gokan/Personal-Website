@@ -6,8 +6,8 @@ module.exports = {
   tagline: 'Engineer | Hobbyist | Classic Car Enthusiast',
   url: 'https://markusgokan.github.io',
   baseUrl: '/portfolio-site/',
-  favicon: 'img/favicon.ico',
-  organizationName: 'markusgokan',
+  favicon: 'img/tron-bike.png',
+  organizationName: 'markus-gokan',
   projectName: 'Personal-Website',
 
 

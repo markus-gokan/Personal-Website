@@ -22,7 +22,7 @@
   
 
   
-  .btnRow{ display:flex; gap:1rem; justify-content: center; }
+  .btnRow{ display:flex; gap:5rem; justify-content: center; }
   
   .btn{
     padding:1.5rem 1.5rem;
@@ -51,7 +51,7 @@
     color:#fff;
     background:#1d1c4e;
     border:none;
-    border-radius:14px 4px 14px 4px;      /* custom shape */
+    border-radius:14px;      /* custom shape */
     cursor:pointer;
     overflow:hidden;
   }
@@ -81,7 +81,19 @@
     pointer-events:none;
   }
   
-  .toggleBtn:hover .glow{ opacity:.8; }
+  .toggleBtn:hover .glow{ opacity:.8; 
+    content: "";
+    position: absolute;
+    z-index: -1;              /* behind the button */
+    top: 120%;                /* push it below the button */
+    left: 0;
+    width: 100%;
+    height: 100%;             /* same height, then squashed */
+    background: var(--col-neon-blue);
+    transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+    filter: blur(1em);
+    pointer-events: none;}
+
   .toggleBtn.open .glow{ background:radial-gradient(circle,#ffbf8055 0%, #0000 70%); }
   
 .carouselWrap{
@@ -105,3 +117,10 @@
     transform:scale(0);
     opacity:0;                       /* fade out */
   }
+
+  .toggleBtn {
+    position: relative;       /* establish containing block */
+    overflow: visible;        /* let the ::before show outside */
+    z-index: 0;               /* so we can layer ::before beneath */
+  }
+  

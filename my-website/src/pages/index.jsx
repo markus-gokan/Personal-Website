@@ -25,23 +25,17 @@ export default function Home() {
         <p>Mechanical engineer • Classic Car Enthusiast • Struggling Web Designer</p>
   
         <div className="btnRow">
-          
-        <Link to="/about" className="toggleBtn aboutBtn">
-  About Me
-  <span className="glow"></span>
-</Link>
-        </div>
-  
-        {/* ---------- SHOWCASE TOGGLE BUTTON ---------- */}
-        <button
-          className={`toggleBtn ${open ? "open" : ""}`}
-          onClick={() => setOpen(!open)}
-        >
-          {open ? "Collapse Showcase" : "Project Showcase"}
-          <span className="glow"></span>
-        </button>
-  
-      </section>
+    <Link to="/about" className="toggleBtn aboutBtn">
+      About Me<span className="glow"/></Link>
+    <button
+      className={`toggleBtn ${open ? "open" : ""}`}
+      onClick={()=>setOpen(!open)}
+    >
+      {open ? "Collapse Showcase" : "Project Showcase"}
+      <span className="glow"></span>
+    </button>
+  </div>
+</section>
 
      {/* ---------- CAROUSEL WRAPPER ---------- */}
      <div   className={`carouselWrap ${open ? "open" : "fade"}`}>

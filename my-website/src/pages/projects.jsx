@@ -36,7 +36,7 @@ export default function ProjectsPage() {
        alt={p.title}
        className="project-thumb"
      />
-     <h3 className="project-title">{p.title}</h3>
+     <h1 className="project-title">{p.title}</h1>
    </Link>
  ))}
         </Masonry>

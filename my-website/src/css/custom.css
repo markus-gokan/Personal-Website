@@ -7,7 +7,6 @@
 :root{
   /* fonts */
   --ifm-font-family-base: "IBM Plex Mono", monospace;
-  --ifm-font-family-heading: "Fugaz One", cursive;
 
   .rubik-glitch-regular {
     font-family: "Rubik Glitch", system-ui;
@@ -19,7 +18,7 @@
   /* vapor‑wave colors */
   --col-neon-pink:   #00f629;
   --col-neon-blue:   #6be2ff;
-  --col-purple-deep: #ff0000;
+  --col-purple-deep: #000069;
   --col-cyber-turq:  #ccff00;
 
   /* Docusaurus primary */
@@ -38,14 +37,15 @@ body{
   background-size:cover;
   background-attachment:fixed;   /* prevents split colors */
   background-position:center;
-  color:#fff;
+  color:#2cc3fa;
+  text-shadow: 0px 0px 5px rgb(255, 0, 255);
 }
 
 /* ─────────── Links & buttons ─────────── */
 a{
   color:var(--col-neon-blue);
   text-decoration:none;
-  text-shadow:0 0 4px var(--col-neon-blue);
+  text-shadow:0 0 8px var(--col-neon-blue);
 }
 
 .button,
@@ -60,10 +60,9 @@ a{
 
 /* ─────────── Navbar ─────────── */
 .navbar__inner{
-  background: linear-gradient(#3d1a78, #ffa4ff);          
-  box-shadow:0 0 10px var(--col-neon-blue);
-  backdrop-filter:blur(4px);
-  min-height: 72px;           /* ensure the inner flex matches */
+  background: transparent !important;          
+  /* box-shadow:0 0 10px var(--col-neon-blue);
+  backdrop-filter:blur(8px); */
 }
 
 /* ─────────── Fade‑in effect on page load ─────────── */
@@ -129,6 +128,7 @@ a{
 
 /* ↑↑ NAVBAR SIZING ↑↑ */
 .navbar {
+
   height: 115px;               /* make the bar taller */
 }
 
@@ -211,13 +211,65 @@ a{
   padding: 0.5rem 0.75rem;
   background: rgba(0, 0, 0, 0.6);
   color: #fff;
-  font-size: 2rem;
+  font-size: 2.25rem;
   opacity: 0;
   transition: opacity 0.3s ease;
-  pointer-events: none;         /* lets clicks pass through on the image */
+  pointer-events: none;       
 }
 
 /* on hover, fade in the title */
 .project-card:hover .project-title {
   opacity: 1;
+}
+
+
+/* ─────────── Transparent navbar ─────────── */
+.navbar,
+.navbar__inner {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.navbar--fixed {
+  background-color: transparent !important;
+}
+
+/* ─── Navbar link “wave” hover effect ───────────────── */
+.navbar__link {
+  position: relative;
+  color: #fff;          
+}
+
+.navbar__link:hover {
+  color: transparent;
+  background-image: linear-gradient(to left,
+    /* color A */ #0dff00 25%,
+    /* color B */ #ffffff 100%,
+    /* back to A */ #2fff00 0%
+  );
+  background-size: 200% 100%;  
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: waveText 1.5s ease-in-out infinite;
+}
+
+/* slide gradient from left to right */
+@keyframes waveText {
+  from {
+    background-position: -100% 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+.navbar__link {
+  /* help with font smoothing */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  text-shadow:
+    0 0 1px rgba(255,255,255,0.6),
+    0 0 2px rgba(255,255,255,0.4);
 }

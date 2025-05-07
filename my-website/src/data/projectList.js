@@ -16,7 +16,7 @@ export const projects = [
     {
       slug: "/FIRSTKORG/writeup",
       title: "FIRST Robotics Team 1257",
-      thumb: hero("./FIRSTKORG/media/hero.jpg").default,
+      thumb: hero("./FIRSTKORG/media/hero.png").default,
       featured: true,
     },
     {

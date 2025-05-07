@@ -2,18 +2,52 @@
 title: About
 ---
 
+import Link from '@docusaurus/Link';
 import headshotUrl from '@site/static/img/HeadshotMarkus.jpg';
 import styles from './about.module.css';
 
 <h1 className={styles.heading}>About&nbsp;Me</h1>
 
 <div className={styles.aboutGrid}>
-  <img src={headshotUrl} alt="Markus Gokan headshot" className={styles.headshot} />
+  <img
+    src={headshotUrl}
+    alt="Markus Gokan headshot"
+    className={styles.headshot}
+  />
 
   <div className={styles.bio}>
-   **Hi! My name is Markus Gokan,** a graduating Mechanical Engineering major currently based in San Diego, Califoria. Thanks for checking out my portfolio! 
-    </div>
-</div>
- <div className={styles.bio}>
-I grew up in New Jersey, and I've worked or lived in 3 states ny now, so I'm no stranger to moving if need be. Currently, I'm continuing my education at UCSD, pursuring a Master of Science in Mechanical Engineering (graduating in June 2027), during which I will be advancing my expertise and honing my skillset before starting my career. The rest of my projects can be found at the Portfolio tab up above, as well as a semi-disconnected gallery of me doing random engineering stuff, my resume can be downloaded below, as well as a link to my Linked-in profile if you want to get in touch. 
+    <p>
+      <strong>Hi! My name is Markus Gokan,</strong> a graduating Mechanical
+      Engineering major currently based in San Diego, California. Thanks for
+      checking out my portfolio!
+    </p>
+    
+    
   </div>
+</div>
+
+<div className={styles.bio}>
+  <p>
+
+      Currently, I'm continuing my education at UCSD, pursuring a Master of Science in Mechanical Engineering (graduating in June 2027), during which I will be advancing my expertise and honing my skillset before starting my career. I love to travel, and after moving across the country for college, I'm no stranger to relocating if I need to after graduating. The rest of my projects can be found at the Portfolio tab up above, as well as a semi-disconnected gallery of me doing random engineering stuff, my resume can be downloaded below, as well as a link to my Linked-in profile if you want to get in touch. 
+  </p>
+</div>
+
+<div className="btnRow">
+  <a
+    className="toggleBtn"
+    href="static/files/Markus_Gokan-B.S._Mechanical_Engineering.pdf"
+    target="_blank"
+    rel="noopener"
+  >
+    View Resume
+  </a>
+  <Link
+    className="toggleBtn"
+    href="https://www.linkedin.com/in/markus-gokan"
+    target="_blank"
+    rel="noopener"
+  >
+    LinkedIn
+  </Link>
+</div>
