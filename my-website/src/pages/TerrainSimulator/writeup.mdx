@@ -1,0 +1,154 @@
+--- 
+hide_table_of_contents: true
+---
+
+import GalleryFlex from "@site/src/components/GalleryFlex";
+import heroImg from "./media/hero.jpg";
+
+{/* ─── Hero Image ─────────────────────────────────── */}
+<img
+  src={heroImg}
+  alt="hero image"
+  style={{
+    width: "100%",
+    height: "auto",
+    borderRadius: "12px",
+    marginBottom: "1.5rem",
+  }}
+/>
+
+{/* ─── Title Block ────────────────────────────────── */}
+# MAE 219 Final Project: 2DOF Underfoot Terrain Simulator
+## Skills: Fusion 360 · FEA · 3D-printing · Human-Factor Design · CNC · Arduino
+
+{(() => {
+  // grab every NON-hero image from ./media
+  function importAll(r) {
+    return r.keys().map(r).map((m) => m.default);
+  }
+ const picsRaw = importAll(
+  require.context(
+    "./media",
+    false,
+    /^(?!.*hero\.).*\.(jpe?g|png|gif)$/
+  )
+);
+
+  // wrap them into objects so we can set individual sizes
+  const pics = picsRaw.map((src) => ({ src, size: 1 }));
+
+  // Image card size override
+  pics[0].size = 1;
+  pics[1].size = 2;
+  pics[2].size = 3;
+
+  // text cards, same API as before
+  const notes = [
+
+    {
+      index: 0,
+      size: 2,
+      jsx: (
+        <>
+          To cumulate MAE 219: Design and Control of Haptic Systems, my project group and I designed and constructed a terrain simulator capable of conveying high-fidelity sensations of obstacles and varied environments. This choice posed an interesting challenge, as not many haptic devices are designed to simulate walking experiences nor are most capable of sustaining or returning the substantial forces that are necessary to effectively simulate what our feet feel while doing something as seemingly benign as walking. We saw this gap in the technology and set out to fill it, hoping to lay the groundwork to enable immersive movement in both virtual reality environments and providing a potentially useful tool for rehabilitation of leg and foot injury in a more controlled environment. 
+        </>
+      ),
+    },
+  {
+  index: 1,
+  size: 1,
+  jsx: (
+    <>
+      <p
+        style={{
+          margin: 0,
+          marginBottom: "0.1rem",
+          fontWeight: 1000,
+        }}
+      >
+        Project Final Paper:
+      </p>
+
+      <div className="btnContainer">
+     <a
+  href="/Personal-Website/TerrainSimulator/paper"
+  className="toggleBtn"
+>
+  View Paper
+  <span className="glow" />
+</a>
+      </div>
+    </>
+  ),
+},
+    {
+      index: 4,
+      size: 4,
+      jsx: (
+        <>
+          The first step was mapping the necessary “workspace” that our device would need to operate in, or rather, what the normal range of a person’s foot might be while walking normally and in uneven terrain. To do so, we explored published literature on gait normality and habilitation, as well as employed the pose estimation software I worked with for El Cochito, my autonomous RC car from a previous project. By doing so we were able to establish a well defined workspace of 14 by 5 inches. 
+        </>
+      ),
+    },
+    {
+      index: 5,   // place after all images
+      size: 4,
+      jsx: (
+        <div className="gf-tile gf-span-3 embedTile">
+          <iframe
+            src="https://www.youtube.com/embed/cZ3P8IIT2b4"
+            title="MAE 219 Haptics Demo Video"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      ),
+    },
+    {
+      index: 5,
+      size: 3,
+      jsx: (
+        <>
+          Additionally, we needed to determine the forces that our device would have to support to replicate the feeling of walking on firm ground. With some questionable jerry rigging in the school weightroom and some very strange looks from our peers, we’d used a cable machine to determine that somewhere between 10 and 25 pounds was where our feet and legs really began to notice a feeling of firmness as we pushed/pulled. With these two design parameters solidified we created a python script to simulate 5 bar linkages and display the workspaces and maximum transparent torque as well as the required motor torque to achieve it across the whole range of motion. 
+        </>
+      ),
+    },
+     {
+      index: 7,
+      size: 4,
+      jsx: (
+        <>
+          Once our link-lengths were set and motor torques defined, we needed to source our components. Funnily enough it so happened that I had two perfect motors and some highly advanced motor controllers sitting in the bottom of my electric skateboard (and lucky too– we hardly had the room in our $150 budget to spring for motors and controllers). So, after cannibalizing my beloved longboard and using like 2 whole spools of printer filament on prototyping link-ends and foot mounts, we had a design we were happy with for the time constraint we were working with. The 2 brushless motors each produced 5N-m of torque, and geared at 5:1 gave us an adequate amount of transparent force to the user's foot. An Arduino Teensy controlled the VESCs (which handled all the complex FOC for the BLDC motors) via an open source CAN/Serial library. We chose a 5 bar linkage because it allowed us to fully define the linkage's end effector with just the angle of two joints, which we obtained by mounting a quadrature encoder on each of the two bottom link joints. 
+        </>
+      ),
+    },
+       {
+      index: 5,   // place after all images
+      size: 4,
+      jsx: (
+        <div className="gf-tile gf-span-3 embedTile">
+          <iframe
+            src="https://www.youtube.com/embed/0SURWmDsTFg"
+            title="MAE 219 Workspace Defintion"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      ),
+    },
+     {
+      index: 9,
+      size: 3,
+      jsx: (
+        <>
+          We then designed a variety of virtual environments to be rendered within the arduino, and conducted multiple user-studies to determine the effectiveness of users’ identifications of their environments, and we actually got pretty good results! We really would have liked to build two of these assemblies so that users could experience walking with both feet, but with the time and budgetary constraints, it wasn't in the cards. Also, there were some rare failure modes (namely link inversions) of the 5 bar linkage that could have been avoided with some mechanical hard stops, but again time got the better of us so we just had to be really careful when having new people testing the machine. All in all, this was a really cool project to cumulate a super fun class on an entirely new topic for me: haptic design. Human-virtual interfaces are going to be a massive part of the future of tech, so I’m excited to see if something like what we’ve done here ever gets implemented on a larger scale. 
+        </>
+      ),
+    },
+    
+  ];
+
+  return <GalleryFlex images={pics} textSlots={notes} />;
+})()}

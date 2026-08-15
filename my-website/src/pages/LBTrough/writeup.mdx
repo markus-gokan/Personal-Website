@@ -1,0 +1,89 @@
+--- 
+hide_table_of_contents: true
+---
+
+import GalleryFlex from "@site/src/components/GalleryFlex";
+import heroImg from "./media/hero.jpg";
+   
+<!-- Hero Image -->
+
+<img
+  src={heroImg}
+  alt="Machining The LB Trough"
+  style={{
+    width: "100%",
+    height: "auto",
+    borderRadius: "12px",
+    marginBottom: "1.5rem",
+  }}
+/>
+   
+<!-- /* Title Block */ -->
+
+# Langmuir-Blodgett Trough
+
+## Skills used: CAD · CNC Milling · CAM
+
+{(() => {
+  /* grab every NON-hero image */
+  function importAll(r) { return r.keys().map(r).map(m => m.default); }
+  // grab every NON-hero image from ./media
+  function importAll(r) {
+    return r.keys().map(r).map((m) => m.default);
+  }
+ const picsRaw = importAll(
+  require.context(
+    "./media",
+    false,
+    /^(?!.*hero\.).*\.(jpe?g|png|gif)$/
+  )
+);
+
+  // wrap them into objects so we can set individual sizes
+  const pics = picsRaw.map((src) => ({ src, size: 1 }));
+
+  // example: make the 7th image full-width (size:3)
+ pics[0].size = 3;
+
+
+
+  /* text cards — set size: 1 | 2 | 3   (defaults to 1) */
+  const notes = [
+   
+   /* Text Card 1 */
+   
+    {
+      index: 1,
+      size: 3,
+      jsx: (
+        <>
+          A fellow researcher in my group was using another research lab's Langmuir-Blodgett Trough for deposition of organic thin films onto his silicon substrates. Unfortunately, his process left that borrowed through contaminated and it took those researchers two months to purify the surface enough for their own research. Needless to say, he wasnt allowed to use their troughs (shown below) anymore after that. 
+        </>
+      ),
+    },
+ 
+/* Text Card 2 */
+
+    {
+      index:5,
+      size: 3,
+      jsx: (
+        <>
+          Luckily though, Langmuir-Blodgett troughs arent actually that complex. At least the removable trough portion isnt- the rest of the system is a complex controls and sensing machine that is finely tuned and well toleranced. In fact, its so well toleranced, that the trough itselfs tolerances are.... very loose. Despite their relative simplicity and benign materials (PTFE primarily), purchasing an LB trough can cost 3-6 thousand dollars. So, after taking a look at the setup in the other group's lab, and taking some measurements my trusty calipers, I whipped up a CAD and CAM model for a functionally (if not aestetically) equivalent trough to what the researcher needed. 
+        </>
+      ),
+    },
+/* Text Card 3 */
+    {
+      index: 9,
+      size: 3,
+      jsx: (
+        <>
+I actaully got more from that lab trip than just some measurements. I noticed a heavily warped trough off to the side and asked the lab manager about it, and apparently a student years past had tried to machine one himself too, but it very quickly warped and became unusable. To avoid this in my attempt, I avoided thinning the PTFE block as much as possible, electing to only take 20 thou off the 2.5 inch thick block as a facing pass, as well as chose to use a 'molded' PTFE stock bar rather than a 'Skived' one, as molded thermoplastics are more resistant to curling due to the stock forming proccess. It's always nice to learn from someone elses mistakes instead of your own, isn't it?
+        </>
+      ),
+    },
+  ];
+
+  return <GalleryFlex images={pics} textSlots={notes} />;
+})()}

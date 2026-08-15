@@ -1,0 +1,112 @@
+--- 
+hide_table_of_contents: true
+---
+
+import GalleryFlex from "@site/src/components/GalleryFlex";
+import heroImg from "./media/hero.jpeg";
+   
+<!-- Hero Image -->
+
+<img
+  src={heroImg}
+  alt="hero image"
+  style={{
+    width: "100%",
+    height: "auto",
+    borderRadius: "12px",
+    marginBottom: "1.5rem",
+  }}
+/>
+   
+<!-- /* Title Block */ -->
+
+# MAE 223: Ocean Tech and Development Wave Buoy
+
+## Skills used: Fusion 360 · Arduino · Soldering · Systems Integration · Controls · Data Analysis 
+
+{(() => {
+      // grab every NON-hero image from ./media
+  function importAll(r) {
+    return r.keys().map(r).map((m) => m.default);
+  }
+ const picsRaw = importAll(
+  require.context(
+    "./media",
+    false,
+    /^(?!.*hero\.).*\.(jpe?g|png|gif)$/
+  )
+);
+
+  // wrap them into objects so we can set individual sizes
+  const pics = picsRaw.map((src) => ({ src, size: 1 }));
+
+  // Image card size override
+  pics[0].size = 3;
+  pics[1].size = 2;
+
+  /* text cards — set size: 1 | 2 | 3   (defaults to 1) */
+  const notes = [
+   
+   /* Text Card 1 */
+   
+    {
+      index: 0,
+      size: 3,
+      jsx: (
+        <>
+   The opportunity to take part in a brand new class (or at least a heavily revamped curriculum) was too tempting to pass up, so I ended up in MAE 223: Ocean Technology and Devices. The new class focus was project focused, and each team's goal was simple: create a portable, low-cost marine device that measures wave and tide motion using GPS and IMU data. 
+
+        </>
+      ),
+    },
+ 
+/* Text Card 2 */
+    {
+      index: 2,
+      size: 1,
+      jsx: (
+        <>
+Our buoy housing was a custom piece made for the UCSD Scripps Institute of Oceanography, but was otherwise an empty husk, so we filled it with these components: <br/>
+1. SparkFun ZED-F9P Receiver - High precision Real-Time Kinematic (RTK) Global Navigation Satellite System (GNSS)<br/>
+2. Arduino ESP32 Thing Plus -Network Connection<br/>
+3. OpenLog Artemis -Log GPS & IMU data<br/>
+
+        </>
+      ),
+    },
+    
+    /* Text Card 3 */
+    {
+      index: 4,
+      size: 3,
+      jsx: (
+        <>
+Unfortunately, taking accurate measurements of ocean wave dynamics is more complicated than just throwing a buoyant sphere with some electronics into the water and fishing it out later. In order to ensure that the buoy's movement was being primarily dedicated to the oceans currents and not the surface winds, we needed to construct a Drogue Chute. Our chute was a vertical conical drogue, which is an older fashioned style of drogue but is remarkably simple to make and provides good results without high complexity. We made ours out of an ikea bag, some laser cut acrylic, and a cut up unicorn kite. It actually worked great! We were thrilled when we tested it in Scripp’s saltwater dive pool, and after a bit of tinkering with some dive weights, we had a buoy that resisted surface perturbations and planted its hemisphere right at the waterline. 
+
+
+        </>
+      ),
+    },
+        /* Text Card 4*/
+    {
+      index: 9,
+      size: 3,
+      jsx: (
+        <>
+All in all, this was a really cool experience, and I was able to check one of my biggest UCSD bucket list items off: going out onto Scripps Pier, and not only that but I went down the access ladder to the ocean level to toss our buoy in. There was a lot of interesting work done to integrate all of our boards with one another on the firmware side of things as well, it’s always interesting to step out of my normally ‘mechanically-focused’ sphere and get to work with some electronics I’ve never used before. 
+  <div className="btnContainer">
+     <a
+  href="/Personal-Website/WaveBuoy/paper"
+  className="toggleBtn"
+>
+  View Paper
+  <span className="glow" />
+</a>
+      </div>
+        </>
+      ),
+    },
+  ]
+
+  return <GalleryFlex images={pics} textSlots={notes} />;
+})()}

@@ -41,13 +41,13 @@ export const projects = [
       slug: "/Commuterboard/writeup",
       title: "Electric Skateboard: The Commuter",
       thumb: hero("./Commuterboard/media/hero.jpg").default,
-      featured: true,
+      featured: false,
     },
     {
       slug: "/RocketComp/writeup",
       title: "Team America Rocket Competition",
       thumb: hero("./RocketComp/media/hero.jpg").default,
-      featured: true,
+      featured: false,
     },
     {
       slug: "/WEEG/writeup",
@@ -59,6 +59,24 @@ export const projects = [
       slug: "/MAE148Class/writeup",
       title: "MAE 148: Intro to Autonomous Vehicles",
       thumb: hero("./MAE148Class/media/hero.jpg").default,
+      featured: true,
+    },
+       {
+      slug: "/TerrainSimulator/writeup",
+      title: "Haptic Underfoot Terrain Simulator",
+      thumb: hero("./TerrainSimulator/media/hero.jpg").default,
+      featured: true,
+    },
+        {
+      slug: "/WaveBuoy/writeup",
+      title: "Ocean Wave and Current Monitoring Buoy",
+      thumb: hero("./WaveBuoy/media/hero.jpeg").default,
+      featured: true,
+    },
+      {
+      slug: "/LBTrough/writeup",
+      title: "Machining a Langmuir-Blodgett Trough for Monolayer Film Deposition",
+      thumb: hero("./LBTrough/media/hero.jpg").default,
       featured: true,
     },
     // …add the rest
