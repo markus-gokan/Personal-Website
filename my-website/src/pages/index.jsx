@@ -22,7 +22,7 @@ export default function Home() {
       {/* ---------- HERO TEXT ---------- */}
       <section className="hero">
         <h1>Markus&nbsp;Gokan</h1>
-        <p>Mechanical engineer • Classic Car Enthusiast • Struggling Web Designer</p>
+        <p>Mechanical engineer • Classic Car Enthusiast • MEMS Researcher</p>
   
         <div className="btnRow">
     <Link to="/about" className="toggleBtn aboutBtn">
